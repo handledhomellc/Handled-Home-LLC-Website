@@ -806,8 +806,6 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 
-  // Paste your Power Automate "When an HTTP request is received" URL below.
-  // See setup instructions provided separately.
   const FORM_ENDPOINT_URL = "https://formspree.io/f/mgaeyzbr";
 
   document.getElementById('projectForm').addEventListener('submit', async function(e){
@@ -836,23 +834,6 @@
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) throw new Error('Request failed with status ' + res.status);
-      document.getElementById('formCard').classList.add('submitted');
-      document.getElementById('confirmMsg').classList.add('show');
-    } catch (err) {
-      btn.textContent = originalText;
-      btn.disabled = false;
-      alert("Something went wrong sending your project. Please email hello@handledhomellc.com or call (317) 714-6116 directly.");
-      console.error('Form submission failed:', err);
-    }
-  });
-
-    try {
-      const res = await fetch(POWER_AUTOMATE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
       if (!res.ok) throw new Error('Request failed with status ' + res.status);
