@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Handled Home LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Beau+Rivage&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#2B2A26;
+    --charcoal-soft:#4E4B41;
+    --olive:#6E7C4E;
+    --olive-dark:#57623D;
+    --taupe:#A9836A;
+    --sand:#D8C4A8;
+    --cream:#F7F3EA;
+    --cream-deep:#EFE7D6;
+    --line:#DED2BC;
+    --muted:#8A8372;
+    --shadow: 0 1px 0 rgba(43,42,38,0.03), 0 18px 40px -22px rgba(43,42,38,0.28);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.65;
+  }
+  h1,h2,h3,h4{
+    font-family:'Cormorant Garamond', serif;
+    margin:0;
+    color:var(--charcoal);
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit;}
+  img,svg{max-width:100%;display:block;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--olive-dark);
+    font-weight:500;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Jost', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:2px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .btn-primary{ background:var(--olive-dark); color:var(--cream); }
+  .btn-primary:hover{ background:var(--charcoal); transform:translateY(-1px); }
+  .btn-ghost{ background:transparent; border-color:var(--charcoal); color:var(--charcoal); }
+  .btn-ghost:hover{ background:var(--charcoal); color:var(--cream); }
+
+  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo .mark{ width:34px; height:34px; flex:none; }
+  .logo .word{ display:flex; flex-direction:column; line-height:1; }
+  .logo .script{ font-family:'Beau Rivage', cursive; font-size:22px; color:var(--charcoal); line-height:0.9; }
+  .logo .caps{ font-family:'Cormorant Garamond', serif; font-size:14px; letter-spacing:0.22em; text-transform:uppercase; color:var(--charcoal); margin-top:1px; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,243,234,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1140px; margin:0 auto; }
+  .navlinks{display:flex; align-items:center; gap:34px;}
+  .navlinks-inner{display:flex; gap:34px;}
+  .navlinks a{ text-decoration:none; color:var(--charcoal-soft); font-size:13px; letter-spacing:0.06em; text-transform:uppercase; transition:color .15s; }
+  .navlinks a:hover, .navlinks a.active{color:var(--olive-dark);}
+  .mobile-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .mobile-toggle span{display:block; width:22px; height:1px; background:var(--charcoal); margin:6px 0;}
+
+  section{ padding:96px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(30px,3.6vw,44px); margin-top:16px; }
+  .section-head .lede{ margin-top:18px; font-size:16.5px; color:var(--charcoal-soft); font-weight:300; }
+  .center{ text-align:center; margin-left:auto; margin-right:auto; }
+
+  .hero-simple{ padding:88px 0 64px; text-align:center; border-bottom:1px solid var(--line); }
+  .hero-simple h1{ font-size:clamp(38px,5vw,58px); line-height:1.1; margin-top:18px; }
+  .hero-simple .sub{ margin-top:20px; font-size:17px; color:var(--charcoal-soft); font-weight:300; max-width:46ch; margin-left:auto; margin-right:auto; }
+
+  .project{ border-bottom:1px solid var(--line); padding:88px 0; }
+  .project .wrap{ display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .project:nth-child(even) .wrap{ direction:rtl; }
+  .project:nth-child(even) .wrap > *{ direction:ltr; }
+  .project-photos{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .project-photos figure{ position:relative; margin:0; aspect-ratio:4/5; overflow:hidden; border-radius:4px; box-shadow:var(--shadow); }
+  .project-photos img{ width:100%; height:100%; object-fit:cover; }
+  .project-photos figcaption{
+    position:absolute; bottom:10px; left:10px;
+    font-family:'Jost', sans-serif; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:#fff; background:rgba(43,42,38,0.55); padding:3px 9px; border-radius:2px;
+  }
+  .project-copy h2{ font-size:clamp(26px,3.2vw,36px); margin-top:14px; }
+  .project-copy .line{ margin:20px 0 0; font-size:15.5px; line-height:1.75; color:var(--charcoal-soft); font-weight:300; }
+  .project-copy .line b{ font-weight:500; color:var(--charcoal); }
+  .project-copy .pull{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:20px;
+    color:var(--charcoal); margin:22px 0 0; border-left:2px solid var(--olive); padding-left:20px;
+  }
+
+  .quotes-band{ background:var(--olive-dark); color:var(--cream); padding:0; overflow:hidden; }
+  .quotes-track{ display:inline-flex; white-space:nowrap; animation:scrollq 36s linear infinite; padding:32px 0; }
+  .quotes-track span{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:19px; padding:0 46px; color:var(--sand); }
+  @keyframes scrollq{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .quotes-track{ animation:none; } }
+
+  footer{ background:var(--charcoal); color:#C9C4B6; padding:56px 0 34px; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:28px; }
+  footer .logo .script, footer .logo .caps{ color:var(--cream); }
+  footer .foot-tag{ margin-top:12px; font-size:13.5px; max-width:32ch; font-weight:300; }
+  footer .flinks{ display:flex; gap:28px; font-size:13px; }
+  footer .flinks a{ text-decoration:none; color:#C9C4B6; letter-spacing:0.04em; text-transform:uppercase; }
+  footer .flinks a:hover, footer .flinks a.active{ color:var(--cream); }
+  .foot-bottom{ margin-top:38px; padding-top:24px; border-top:1px solid rgba(247,243,234,0.14); font-size:12.5px; color:#8A8574; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  @media (max-width: 880px){
+    .navlinks-inner{ display:none; }
+    .mobile-toggle{ display:block; }
+    .project .wrap, .project:nth-child(even) .wrap{ grid-template-columns:1fr; direction:ltr; gap:32px; }
+    footer .wrap{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html#top" class="logo">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 20L20 8L34 20" stroke="#57623D" stroke-width="1.4" stroke-linecap="round"/>
+        <rect x="18" y="16" width="4" height="4" stroke="#57623D" stroke-width="1.2" fill="none"/>
+      </svg>
+      <span class="word"><span class="script">Handled Home</span><span class="caps">LLC</span></span>
+    </a>
+    <div class="navlinks">
+      <div class="navlinks-inner">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#about">About</a>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <a href="index.html#contact" class="btn btn-primary">Submit a Project</a>
+    </div>
+    <button class="mobile-toggle" aria-label="Menu" onclick="document.getElementById('mnav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div id="mnav" style="display:none; flex-direction:column; padding:0 28px 20px; gap:16px; font-size:14px;">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#about">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero-simple">
+    <div class="wrap">
+      <span class="eyebrow center">Portfolio</span>
+      <h1>Three projects, start to done.</h1>
+      <p class="sub">Real work, for real households, handled from the first phone call to the final walkthrough.</p>
+    </div>
+  </section>
+
+  <article class="project reveal">
+    <div class="wrap">
+      <div class="project-photos">
+        <figure><img src="images/playset-before.jpg" alt="Empty backyard slope before playset install"><figcaption>Before</figcaption></figure>
+        <figure><img src="images/playset-after.jpg" alt="Finished playset with slide and swings"><figcaption>After</figcaption></figure>
+      </div>
+      <div class="project-copy">
+        <span class="eyebrow left">The playset</span>
+        <h2>Backyard Upgrade</h2>
+        <p class="line"><b>The ask:</b> a family wanted a play set up before summer, on a budget that ruled out buying new.</p>
+        <p class="line"><b>The work:</b> we sourced a strong secondhand set from the marketplace, handled the pickup, brought in painters to make it look brand new, then coordinated the install crew and mulch delivery.</p>
+        <p class="pull">A like-new play set at a fraction of the cost, delivered and installed without the family lifting a finger.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project reveal">
+    <div class="wrap">
+      <div class="project-photos">
+        <figure><img src="images/pergola-before.jpg" alt="Pergola roof panels being installed"><figcaption>Before</figcaption></figure>
+        <figure><img src="images/pergola-after.jpg" alt="Finished patio with pergola and outdoor furniture"><figcaption>After</figcaption></figure>
+      </div>
+      <div class="project-copy">
+        <span class="eyebrow left">The backyard</span>
+        <h2>An Empty Yard, Turned Outdoor Oasis</h2>
+        <p class="line"><b>The ask:</b> an empty yard and a Pinterest board full of ideas, with no idea how to make the calls to bring it to life.</p>
+        <p class="line"><b>The work:</b> we sourced and vetted concrete contractors for the sidewalk and patio pour, found a pergola matched to the space, coordinated the install crew, then sourced furniture and decor around the client's style.</p>
+        <p class="pull">A blank canvas turned into the yard they'd been dreaming about.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project reveal">
+    <div class="wrap">
+      <div class="project-photos">
+        <figure><img src="images/office-before.jpg" alt="Home office before refresh, with old desk setup"><figcaption>Before</figcaption></figure>
+        <figure><img src="images/office-after.jpg" alt="Home office after refresh, with new gallery wall and furniture"><figcaption>After</figcaption></figure>
+      </div>
+      <div class="project-copy">
+        <span class="eyebrow left">The office</span>
+        <h2>An Outdated Office, Turned Workspace They're Proud Of</h2>
+        <p class="line"><b>The ask:</b> an office overdue for a change, and a client stuck on the first step: where to even start.</p>
+        <p class="line"><b>The work:</b> we cleared the old setup (donating, trashing, or reselling for profit), brought in painters, sourced new furniture within budget, then proposed and installed decor to match their taste.</p>
+        <p class="pull">A room they're proud to show up to every morning.</p>
+      </div>
+    </div>
+  </article>
+
+  <section class="quotes-band">
+    <div class="quotes-track">
+      <span>"Worth every dollar just for the mental space it freed up."</span>
+      <span>"The projects I'd been avoiding for months got done in weeks."</span>
+      <span>"I forgot how nice it feels to not be the project manager of my own house."</span>
+      <span>"Worth every dollar just for the mental space it freed up."</span>
+      <span>"The projects I'd been avoiding for months got done in weeks."</span>
+      <span>"I forgot how nice it feels to not be the project manager of my own house."</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap section-head center reveal">
+      <span class="eyebrow">Have something on your list?</span>
+      <h2 style="margin-top:16px;">If it sounds like this, that's exactly what we do.</h2>
+      <p class="lede">No obligation. Just send the list and we'll follow up within one business day.</p>
+      <div style="margin-top:28px;">
+        <a href="index.html#contact" class="btn btn-primary">Submit a Project →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="index.html#top" class="logo">
+        <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 20L20 8L34 20" stroke="#D8C4A8" stroke-width="1.4" stroke-linecap="round"/>
+          <rect x="18" y="16" width="4" height="4" stroke="#D8C4A8" stroke-width="1.2" fill="none"/>
+        </svg>
+        <span class="word"><span class="script">Handled Home</span><span class="caps">LLC</span></span>
+      </a>
+      <p class="foot-tag">Personal project management for real life. Send us the list. We'll take it from here.</p>
+    </div>
+    <div class="flinks">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Handled Home LLC. Serving the Greater Indianapolis metro.</span>
+    <span>Your life. Handled.</span>
+  </div>
+</footer>
+
+<script>
+  const mtoggle = document.querySelector('.mobile-toggle');
+  const mnav = document.getElementById('mnav');
+  mtoggle.addEventListener('click', () => {
+    mnav.style.display = mnav.style.display === 'flex' ? 'none' : 'flex';
+  });
+  mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.style.display = 'none'));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
